@@ -175,16 +175,14 @@ function MotionAndScroll() {
 
 function Router() {
   return (
-    <WouterRouter base={BASE_PATH}>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/visit" component={Visit} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/404" component={NotFound} />
-        <Route component={NotFound} />
-      </Switch>
-    </WouterRouter>
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/visit" component={Visit} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/404" component={NotFound} />
+      <Route component={NotFound} />
+    </Switch>
   );
 }
 
@@ -192,10 +190,12 @@ export default function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
-        <MotionAndScroll />
-        <Header />
-        <Router />
-        <Footer />
+        <WouterRouter base={BASE_PATH}>
+          <MotionAndScroll />
+          <Header />
+          <Router />
+          <Footer />
+        </WouterRouter>
       </ThemeProvider>
     </ErrorBoundary>
   );
