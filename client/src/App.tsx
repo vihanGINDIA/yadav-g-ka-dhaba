@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, Route, Switch, useLocation } from "wouter";
+import { Link, Route, Router as WouterRouter, Switch, useLocation } from "wouter";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
@@ -20,6 +20,7 @@ const navItems = [
   { href: "/visit", label: "Visit" },
   { href: "/contact", label: "Contact Us" },
 ];
+const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 function BrandMark() {
   return (
@@ -174,14 +175,16 @@ function MotionAndScroll() {
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/visit" component={Visit} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/404" component={NotFound} />
-      <Route component={NotFound} />
-    </Switch>
+    <WouterRouter base={BASE_PATH}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/visit" component={Visit} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/404" component={NotFound} />
+        <Route component={NotFound} />
+      </Switch>
+    </WouterRouter>
   );
 }
 
